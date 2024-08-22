@@ -20,20 +20,8 @@ spec:
           persistentVolumeClaim:
             claimName: mealie-pvc
       containers:
-      # - name: mealie-frontend
-      #   image: ghcr.io/mealie-recipes/mealie:v1.0.0
-        # ports:
-        # - containerPort: 9000
-        #   name: http-web-svc
-      #   env:
-      #   - name: API_URL
-      #     value: "http://localhost:9000"
-      #   volumeMounts:
-      #   - mountPath: "/app/data/"
-      #     name: mealie-pv
-      #     # readOnly: true
       - name: mealie
-        image: ghcr.io/mealie-recipes/mealie:v1.11.0
+        image: ghcr.io/mealie-recipes/mealie:v1.12.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
@@ -57,7 +45,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  # storageClassName: local-path
+  storageClassName: longhorn
   resources:
     requests:
       storage: 5Gi
