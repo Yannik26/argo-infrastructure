@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mealie-config
+  namespace: mealie
+data:
+  ALLOW_SIGNUP: "true"
+  TZ: Europe/Berlin
+  MAX_WORKERS: "1"
+  WEB_CONCURRENCY: "1"
+  BASE_URL: https://mealie.yannikmueller.eu

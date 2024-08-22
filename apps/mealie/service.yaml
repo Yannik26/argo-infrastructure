@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mealie-service
+  namespace: mealie
+  labels:
+    app: mealie
+spec:
+  selector:
+    app: mealie
+  ports:
+    - name: mealie-web-ui
+      protocol: TCP
+      port: 80
+      targetPort: 9000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mealie-ingress
+  namespace: mealie
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+      - mealie.yannikmueller.eu
+    secretName: mealie-tls
+  rules:
+  - host: "mealie.yannikmueller.eu"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mealie-service
+            port:
+              number: 80

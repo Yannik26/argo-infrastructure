@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mealie
+  namespace: mealie
+  labels:
+    app: mealie
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mealie
+  template:
+    metadata:
+      labels:
+        app: mealie
+    spec:
+      volumes:
+        - name: mealie-pv
+          persistentVolumeClaim:
+            claimName: mealie-pvc
+      containers:
+      # - name: mealie-frontend
+      #   image: ghcr.io/mealie-recipes/mealie:v1.0.0
+        # ports:
+        # - containerPort: 9000
+        #   name: http-web-svc
+      #   env:
+      #   - name: API_URL
+      #     value: "http://localhost:9000"
+      #   volumeMounts:
+      #   - mountPath: "/app/data/"
+      #     name: mealie-pv
+      #     # readOnly: true
+      - name: mealie
+        image: ghcr.io/mealie-recipes/mealie:v1.11.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+          name: http-web-svc
+        envFrom:
+          - configMapRef:
+              name: mealie-config
+          - secretRef:
+              name: mealie-secret
+        volumeMounts:
+        - mountPath: "/app/data/"
+          name: mealie-pv
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mealie-pvc
+  namespace: mealie
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # storageClassName: local-path
+  resources:
+    requests:
+      storage: 5Gi
