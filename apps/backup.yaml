@@ -1,0 +1,82 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: vaultwarden-backup
+  namespace: vaultwarden
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 100
+      template:
+        spec:
+          containers:
+          - name: vw-backup-push-to-cloud
+            image: rclone/rclone
+            imagePullPolicy: Always
+            volumeMounts:
+            # - name: vw-data-volume
+            #   mountPath: /data/
+            - name: rclone-config
+              mountPath: /config/rclone/rclone.conf
+              subPath: rclone.conf
+              readOnly: true
+            - name: shared-data
+              mountPath: /backup/
+            command: ["/bin/sh", "-c"]
+            args: 
+            - |
+              cd /backup 
+              ls 
+              ls /gpg
+
+
+          initContainers:
+          - name: vw-backup
+            image: debian:stable-slim
+            imagePullPolicy: Always
+            env:
+            - name: GPG_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: backup-encryption
+                  key: id
+            volumeMounts: 
+            - name: vw-data-volume
+              mountPath: /data/
+              readOnly: true
+            - name: shared-data
+              mountPath: /backup/
+            - name: gpg-key
+              mountPath: /gpg/
+              readOnly: true
+            command: ["/bin/sh", "-c"]
+            args:
+            - |
+              apt update
+              apt install sqlite3 gnupg -y
+              echo "$ENCRYPTION_KEY"
+              gpg --import /gpg/gpg-key
+              cd /backup
+              mkdir files
+              cd files
+              sqlite3 /data/db.sqlite3 ".backup 'db.sqlite3'" 
+              find /data/ -type f ! -name *sqlite* -exec cp -t /backup/files {} + 
+              cd /backup
+              find /backup/files -type f -o -type d -printf "%P\n" | tar -czf vaultwarden_backup_$(date '+%F').tgz --no-recursion -C /backup/files -T - 
+              gpg --trust-model always --encrypt -a --recipient $GPG_KEY_ID vaultwarden_backup_*.tgz
+
+
+          restartPolicy: OnFailure
+          volumes:
+          - name: shared-data
+            emptyDir: {}
+          - name: vw-data-volume
+            persistentVolumeClaim:
+              claimName: vaultwarden-data-vaultwarden-0
+          - name: rclone-config
+            secret:
+              name: rclone-config
+          - name: gpg-key
+            secret:
+              secretName: backup-encryption
