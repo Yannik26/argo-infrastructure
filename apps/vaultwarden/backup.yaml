@@ -26,6 +26,7 @@ spec:
             command: ["/bin/sh", "-c"]
             args: 
             - |
+              less /config/rclone/rclone.conf
               cd /backup 
               ls -al
               rclone copy ./vaultwarden_backup_*.tgz.asc Dropbox:/backup/vaultwarden
