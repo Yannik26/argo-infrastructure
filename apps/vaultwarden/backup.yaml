@@ -27,8 +27,8 @@ spec:
             args: 
             - |
               cd /backup 
-              ls 
-              # rclone copy ./vaultwarden_backup_*.tgz
+              ls -al
+              rclone copy ./vaultwarden_backup_*.tgz.asc Dropbox:/backup/vaultwarden
 
 
           initContainers:
