@@ -28,7 +28,7 @@ spec:
             - |
               cd /backup 
               ls 
-              ls /gpg
+              # rclone copy ./vaultwarden_backup_*.tgz
 
 
           initContainers:
