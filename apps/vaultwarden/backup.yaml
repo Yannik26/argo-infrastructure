@@ -4,7 +4,7 @@ metadata:
   name: vaultwarden-backup
   namespace: vaultwarden
 spec:
-  schedule: "* * * * *"
+  schedule: "0 0 * * *"
   jobTemplate:
     spec:
       ttlSecondsAfterFinished: 100
