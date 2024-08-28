@@ -76,7 +76,7 @@ spec:
               claimName: vaultwarden-data-vaultwarden-0
           - name: rclone-config
             secret:
-              name: rclone-config
+              secretName: rclone-config
           - name: gpg-key
             secret:
               secretName: backup-encryption
