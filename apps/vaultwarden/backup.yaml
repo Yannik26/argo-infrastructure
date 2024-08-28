@@ -26,9 +26,7 @@ spec:
             command: ["/bin/sh", "-c"]
             args: 
             - |
-              less /config/rclone/rclone.conf
               cd /backup 
-              ls -al
               rclone copy ./vaultwarden_backup_*.tgz.asc Dropbox:/backup/vaultwarden
 
 
@@ -56,17 +54,14 @@ spec:
             - |
               apt update
               apt install sqlite3 gnupg -y
-              echo "$ENCRYPTION_KEY"
               gpg --import /gpg/gpg-key
-              cd /backup
-              mkdir files
-              cd files
+              mkdir -p /backup/files
+              cd /backup/files
               sqlite3 /data/db.sqlite3 ".backup 'db.sqlite3'" 
               find /data/ -type f ! -name *sqlite* -exec cp -t /backup/files {} + 
               rm /backup/files/*.sqlite3-*
               cd /backup
               find /backup/files -printf "%P\n" | tar -czf vaultwarden_backup_$(date '+%F').tgz --no-recursion -C /backup/files -T - 
-              ls -al
               gpg --trust-model always --encrypt -a --recipient $GPG_KEY_ID vaultwarden_backup_*.tgz
 
 
