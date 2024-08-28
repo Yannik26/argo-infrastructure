@@ -64,9 +64,8 @@ spec:
               sqlite3 /data/db.sqlite3 ".backup 'db.sqlite3'" 
               find /data/ -type f ! -name *sqlite* -exec cp -t /backup/files {} + 
               cd /backup
-              find /backup/files -type f -o -type d -printf "%P\n" | tar -czf vaultwarden_backup_$(date '+%F').tgz --no-recursion -C /backup/files -T - 
+              find /backup/files -printf "%P\n" | tar -czf vaultwarden_backup_$(date '+%F').tgz --no-recursion -C /backup/files -T - 
               ls -al
-              ls -al /backup/files
               gpg --trust-model always --encrypt -a --recipient $GPG_KEY_ID vaultwarden_backup_*.tgz
 
 
