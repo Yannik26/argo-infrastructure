@@ -62,7 +62,7 @@ spec:
               mkdir files
               cd files
               sqlite3 /data/db.sqlite3 ".backup 'db.sqlite3'" 
-              ls /backup/files
+              find /data/ -type f ! -name *sqlite* 
               find /data/ -type f ! -name *sqlite* -exec cp -t /backup/files {} + 
               cd /backup
               find /backup/files -printf "%P\n" | tar -czf vaultwarden_backup_$(date '+%F').tgz --no-recursion -C /backup/files -T - 
