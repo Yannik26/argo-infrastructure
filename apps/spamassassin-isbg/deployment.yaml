@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isbg
+spec:
+  selector:
+    matchLabels:
+      app: isbg
+  template:
+    metadata:
+      labels:
+        app: isbg
+    spec:
+      volumes:
+      - name: spamassassin-data
+        persistentVolumeClaim:
+            claimName: spamassassin-data-pvc
+      - name: private-email
+        secret:
+          secretName: "post@yannik-mueller.de-config"
+      containers:
+      - name: isbg
+        image: ghcr.io/yannik26/docker_isbg
+        volumeMounts:
+        - name: private-email
+          mountPath: /var/lib/mailaccounts/post@yannik-mueller.de.conf
+          subPath: post@yannik-mueller.de.conf
+          readOnly: true
+        - mountPath: "/var/lib/spamassassin/"
+          name: spamassassin-data
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+          name: isbg-config
+
