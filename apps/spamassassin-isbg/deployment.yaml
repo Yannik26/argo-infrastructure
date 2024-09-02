@@ -17,7 +17,7 @@ spec:
             claimName: spamassassin-data-pvc
       - name: private-email
         secret:
-          secretName: post_at_yannik-mueller.de-config
+          secretName: post-at-yannik-mueller.de-config
       containers:
       - name: isbg
         image: ghcr.io/yannik26/docker_isbg
