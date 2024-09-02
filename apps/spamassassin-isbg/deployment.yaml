@@ -23,8 +23,8 @@ spec:
         image: ghcr.io/yannik26/docker_isbg:main
         volumeMounts:
         - name: private-email
-          mountPath: /var/lib/mailaccounts/post@yannik-mueller.de.conf
-          subPath: post@yannik-mueller.de.conf
+          mountPath: /var/lib/mailaccounts/post_at_yannik-mueller.de.conf
+          subPath: post_at_yannik-mueller.de.conf
           readOnly: true
         - mountPath: "/var/lib/spamassassin/"
           name: spamassassin-data
