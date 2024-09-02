@@ -34,5 +34,5 @@ spec:
             cpu: "500m"
         envFrom:
         - configMapRef:
-          name: isbg-config
+            name: isbg-config
 
