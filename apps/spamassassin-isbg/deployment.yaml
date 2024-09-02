@@ -14,7 +14,7 @@ spec:
       volumes:
       - name: spamassassin-data
         persistentVolumeClaim:
-            claimName: spamassassin-data-pvc
+            claimName: spamassassin-data
       - name: private-email
         secret:
           secretName: post-at-yannik-mueller.de-config
