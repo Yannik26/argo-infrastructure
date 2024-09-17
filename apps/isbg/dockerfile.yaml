@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vw-backup-dockerfile
+  namespace: kaniko
+data:
+  Dockerfile: |
+    FROM rclone/rclone
+    RUN apk add sqlite
+    RUN mkdir /backup
+    VOLUME /data
+    CMD cd /backup \
+        && sqlite3 /data/db.sqlite3 ".backup 'db.sqlite3'" \
+        && find /data/ -type f ! -name *sqlite* -exec cp -t /backup {} + \
+        && find /backup \( -type f -o -type d \) -printf "%P\n" | tar -czf vaultwarden_backup_$(date '+%F').tgz --no-recursion -C /backup -T - \
+        && ls -al /

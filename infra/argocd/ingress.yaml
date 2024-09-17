@@ -17,8 +17,8 @@ metadata:
   name: argocd-server
   namespace: argocd
 spec:
-  # entryPoints:
-  #   - websecure
+  entryPoints:
+    - websecure
   routes:
     - kind: Rule
       match: Host(`argocd.yannikmueller.eu`)
