@@ -5,3 +5,4 @@ metadata:
 data:
   TZ: "Europe/Berlin"
   LIST_FOLDERS: "true"
+  DETAILED_LOGGING: "true"
