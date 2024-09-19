@@ -35,4 +35,20 @@ spec:
         envFrom:
         - configMapRef:
             name: isbg-config
+      - name: debian
+        image: debian:bookworm-slim
+        volumeMounts:
+        - name: private-email
+          mountPath: /var/lib/mailaccounts/post_at_yannik-mueller.de.conf
+          subPath: post_at_yannik-mueller.de.conf
+          readOnly: true
+        - mountPath: "/var/lib/spamassassin/"
+          name: spamassassin-data
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: isbg-config
 
