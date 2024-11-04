@@ -12,8 +12,8 @@ data:
   OPENAI_BASE_URL: "http://ollama.ollama.svc.cluster.local:80/v1"
   OPENAI_API_KEY: "none"
   OPENAI_MODEL: llava:13b
-  OPENAI_WORKERS: 2
+  OPENAI_WORKERS: "2"
   OPENAI_SEND_DATABASE_DATA: "true"
-  
+
 
 
