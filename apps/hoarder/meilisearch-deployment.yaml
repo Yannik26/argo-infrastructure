@@ -22,7 +22,7 @@ spec:
             - mountPath: /meili_data
               name: meilisearch
           envFrom:
-            - secretMapRef:
+            - secretRef:
                 name: hoarder-env
       volumes:
         - name: meilisearch
