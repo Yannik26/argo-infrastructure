@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spoolman
+spec:
+  selector:
+    matchLabels:
+      app: spoolman
+  template:
+    metadata:
+      labels:
+        app: spoolman
+    spec:
+      volumes:
+      - name: mealie-pv
+        persistentVolumeClaim:
+          claimName: spoolman-pvc
+      containers:
+      - name: spoolman
+        image: ghcr.io/donkie/spoolman
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: "/home/app/.local/share/spoolman"
+          name: mealie-pv
+        envFrom:
+          - configMapRef:
+              name: spoolman-config
+          # - secretRef:
+          #     name: spoolman-secret
