@@ -12,7 +12,7 @@ spec:
         app: spoolman
     spec:
       volumes:
-      - name: mealie-pv
+      - name: spoolman-pv
         persistentVolumeClaim:
           claimName: spoolman-pvc
       containers:
@@ -26,7 +26,7 @@ spec:
         - containerPort: 8000
         volumeMounts:
         - mountPath: "/home/app/.local/share/spoolman"
-          name: mealie-pv
+          name: spoolman-pv
         envFrom:
           - configMapRef:
               name: spoolman-config
