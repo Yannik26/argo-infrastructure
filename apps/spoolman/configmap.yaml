@@ -4,3 +4,5 @@ metadata:
   name: spoolman-config
 data:
   TZ: Europe/Berlin
+  PUID: "0"
+  PGID: "0" 
