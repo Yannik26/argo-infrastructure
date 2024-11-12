@@ -15,7 +15,10 @@ metadata:
   name: spoolman-ingress
   labels:
     name: spoolman-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
+  ingressClassName: traefik
   tls:
   - hosts:
       - spoolman.yannikmueller.eu
