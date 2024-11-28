@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+spec:
+  selector:
+    matchLabels:
+      app: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+    spec:
+      volumes:
+      - name: paperless-data-pv 
+        persistentVolumeClaim:
+          claimName: paperless-data
+      - name: paperless-media-pv 
+        persistentVolumeClaim:
+          claimName: paperless-media
+      - name: paperless-export-pv 
+        persistentVolumeClaim:
+          claimName: paperless-export-pv 
+      - name: paperless-consume-pv 
+        persistentVolumeClaim:
+          claimName: paperless-consume
+      containers:
+      - name: paperless
+        image: ghcr.io/paperless-ngx/paperless-ngx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        envFrom:
+          - configMapRef:
+              name: paperless-config
+          - secretRef:
+              name: paperless-secret
+        volumeMounts: 
+        - name: paperless-consume-pv
+          mountPath: /usr/src/paperless/consume
+        - name: paperless-media-pv
+          mountPath: /usr/src/paperless/media
+        - name: paperless-data-pv
+          mountPath: /usr/src/paperless/data
+        - name: paperless-export-pv
+          mountPath: /usr/src/paperless/export
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-data
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-media
+spec:
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-export
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-consume
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paperless-svc
+spec:
+  selector:
+    app: paperless
+  ports:
+  - port: 80
+    targetPort: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+      - paperless.yannikmueller.eu
+    secretName: paperless-tls
+  rules:
+  - host: "paperless.yannikmueller.eu"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: paperless-svc
+            port:
+              number: 80
+
