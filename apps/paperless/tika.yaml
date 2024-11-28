@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tika-svc
+  name: tika
 spec:
   selector:
     app: tika
