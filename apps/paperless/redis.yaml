@@ -18,10 +18,10 @@ spec:
       containers:
       - name: broker
         image: docker.io/library/redis:7
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 6379
         volumeMounts: 
