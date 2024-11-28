@@ -38,6 +38,17 @@ spec:
               name: paperless-config
           - secretRef:
               name: paperless-secret
+        env: 
+        - name: PAPERLESS_DBUSER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-user
+              key: username 
+        - name: PAPERLESS_DBPASS
+          valueFrom:
+            secretKeyRef:
+              name: postgres-user
+              key: password
         volumeMounts: 
         - name: paperless-consume-pv
           mountPath: /usr/src/paperless/consume
