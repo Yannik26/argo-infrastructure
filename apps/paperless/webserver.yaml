@@ -20,13 +20,13 @@ spec:
           claimName: paperless-media
       - name: paperless-export-pv 
         persistentVolumeClaim:
-          claimName: paperless-export-pv 
+          claimName: paperless-export
       - name: paperless-consume-pv 
         persistentVolumeClaim:
           claimName: paperless-consume
       containers:
       - name: paperless
-        image: ghcr.io/paperless-ngx/paperless-ngx
+        image: ghcr.io/paperless-ngx/paperless-ngx:latest
         resources:
           limits:
             memory: "128Mi"
