@@ -19,7 +19,7 @@ data:
   OIDC_CONFIGURATION_URL: "https://sso.yannikmueller.eu/realms/Homelab/.well-known/openid-configuration"
   OIDC_CLIENT_ID: "mealie"
   OIDC_PROVIDER_NAME: "Keycloak"
-
+  OIDC_AUTO_REDIRECT: "true"
 
 
 
