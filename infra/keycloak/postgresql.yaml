@@ -13,8 +13,6 @@ spec:
   storage:
     storageClass: longhorn
     size: 5Gi
-
-
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
