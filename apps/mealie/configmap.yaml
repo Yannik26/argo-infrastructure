@@ -15,6 +15,7 @@ data:
   OPENAI_WORKERS: "2"
   OPENAI_SEND_DATABASE_DATA: "true"
   OIDC_AUTH_ENABLED: "true"
+  OIDC_SIGNUP_ENABLED: "true"
   OIDC_CONFIGURATION_URL: "https://sso.yannikmueller.eu/realms/Homelab/.well-known/openid-configuration"
   OIDC_CLIENT_ID: "mealie"
   OIDC_PROVIDER_NAME: "Keycloak"
