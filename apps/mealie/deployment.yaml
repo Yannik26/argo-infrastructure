@@ -21,7 +21,7 @@ spec:
             claimName: mealie-pvc
       containers:
       - name: mealie
-        image: ghcr.io/mealie-recipes/mealie:v2.1.0
+        image: ghcr.io/mealie-recipes/mealie:v2.3.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
