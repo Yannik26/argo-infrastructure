@@ -9,7 +9,7 @@ spec:
       database: keycloak
       owner: keycloak
       secret:
-        name: app-secret
+        name: keycloak-db-secret
   storage:
     storageClass: longhorn
     size: 5Gi
