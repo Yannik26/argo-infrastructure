@@ -17,7 +17,7 @@ spec:
           claimName: spoolman-pvc
       containers:
       - name: spoolman
-        image: ghcr.io/donkie/spoolman
+        image: ghcr.io/donkie/spoolman:0.21.0
         resources:
           limits:
             memory: "128Mi"
