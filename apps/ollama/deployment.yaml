@@ -17,7 +17,7 @@ spec:
             claimName: ollama-pvc
       containers:
       - name: ollama
-        image: ollama/ollama:latest
+        image: ollama/ollama:0.5.6
         ports:
         - name: http
           containerPort: 11434
