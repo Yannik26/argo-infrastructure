@@ -4,6 +4,7 @@ metadata:
   annotations:
     keel.sh/policy: all
     keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@daily"
   name: ollama
 spec:
   selector:
