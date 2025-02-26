@@ -1,6 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@daily"
   name: chrome
 spec:
   replicas: 1
@@ -14,7 +18,7 @@ spec:
     spec:
       containers:
         - name: chrome
-          image: gcr.io/zenika-hub/alpine-chrome:124
+          image: gcr.io/zenika-hub/alpine-chrome:latest
           command:
             - chromium-browser
             - --headless
