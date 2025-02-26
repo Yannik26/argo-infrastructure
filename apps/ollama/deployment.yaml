@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    keel.sh/policy=force
-    keel.sh/trigger=poll
+    keel.sh/policy: force
+    keel.sh/trigger: poll
   name: ollama
 spec:
   selector:
