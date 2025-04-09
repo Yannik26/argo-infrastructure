@@ -4,7 +4,7 @@ metadata:
   name: web
 spec:
   selector:
-    app: hoarder-web
+    app: karakeep-web
   ports:
     - protocol: TCP
       port: 3000
@@ -15,7 +15,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hoarder-ingress
+  name: karakeep-ingress
   # namespace: hoarder
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
@@ -24,10 +24,10 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-      - hoarder.yannikmueller.eu
-    secretName: hoarder-tls
+      - karakeep.yannikmueller.eu
+    secretName: karakeep-tls
   rules:
-  - host: "hoarder.yannikmueller.eu"
+  - host: "karakeep.yannikmueller.eu"
     http:
       paths:
       - pathType: Prefix

@@ -10,15 +10,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hoarder-web
+      app: karakeep-web
   template:
     metadata:
       labels:
-        app: hoarder-web
+        app: karakeep-web
     spec:
       containers:
         - name: web
-          image: ghcr.io/hoarder-app/hoarder:0.21.0
+          image: ghcr.io/karakeep-app/karakeep:0.23.2
           ports:
             - containerPort: 3000
           env:
@@ -34,8 +34,8 @@ spec:
               name: data
           envFrom:
             - secretRef:
-                name: hoarder-env
+                name: karakeep-env
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: hoarder-pvc
+            claimName: karakeep-pvc
