@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sds-tableau
+spec:
+  selector:
+    matchLabels:
+      app: sds-tableau
+  template:
+    metadata:
+      labels:
+        app: sds-tableau
+    spec:
+      containers:
+      - name: sds-tableau
+        image: harbor.yannikmueller.eu/sds-status/sds-tableau:testing
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

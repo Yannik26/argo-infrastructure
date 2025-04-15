@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leitstelle
+spec:
+  selector:
+    matchLabels:
+      app: leitstelle
+  template:
+    metadata:
+      labels:
+        app: leitstelle
+    spec:
+      containers:
+      - name: leitstelle
+        image: harbor.yannikmueller.eu/sds-status/leitstelle:testing
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 3000
