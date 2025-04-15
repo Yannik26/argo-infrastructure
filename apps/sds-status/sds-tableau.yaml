@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: sds-tableau
-        image: harbor.yannikmueller.eu/sds-status/sds-tableau:testing
+        image: harbor-core/sds-status/sds-tableau:testing
         resources:
           limits:
             memory: "128Mi"
