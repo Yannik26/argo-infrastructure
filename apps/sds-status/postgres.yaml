@@ -1,0 +1,31 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: sds-database
+spec:
+  instances: 1
+  bootstrap:
+    initdb:
+      database: sds-status
+      owner: sds
+      secret:
+        name: sds-db-secret
+  storage:
+    storageClass: longhorn
+    size: 2Gi
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Pooler
+metadata:
+  name: pooler-sds-database-rw
+spec:
+  cluster:
+    name: sds-database
+  instances: 1
+  type: rw
+  pgbouncer:
+    poolMode: session
+    parameters:
+      max_client_conn: "1000"
+      default_pool_size: "10"
+      # ignore_startup_parameters: "search_path"

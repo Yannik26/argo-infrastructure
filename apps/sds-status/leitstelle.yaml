@@ -14,6 +14,15 @@ spec:
       containers:
       - name: leitstelle
         image: harbor.yannikmueller.eu/sds-status/leitstelle:testing
+        env:
+        - name: SDS_API_URL
+          value: funk.yannikmueller.eu
+        - name: SDS_OIDC_AUTHORITY
+          value: https://sso.yannikmueller.eu/realms/Funk-Status-App
+        - name: SDS_OIDC_CLIENT_ID
+          value: sds-dev
+        - name: SDS_OIDC_REDIRECT
+          value: http://localhost:3000/leitstelle/
         resources:
           limits:
             memory: "128Mi"

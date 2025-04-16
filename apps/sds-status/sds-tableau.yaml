@@ -14,6 +14,9 @@ spec:
       containers:
       - name: sds-tableau
         image: harbor.yannikmueller.eu/sds-status/sds-tableau:testing
+        env:
+        - name: SDS_API_URL
+          value: funk.yannikmueller.eu
         resources:
           limits:
             memory: "128Mi"

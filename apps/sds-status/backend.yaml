@@ -14,6 +14,20 @@ spec:
       containers:
       - name: backend
         image: harbor.yannikmueller.eu/sds-status/backend:testing
+        env: 
+        - name: DB_USER 
+          valueFrom:
+            secretKeyRef:
+              name: sds-db-secret
+              key: username
+        - name: DB_PASSWORD 
+          valueFrom:
+            secretKeyRef:
+              name: sds-db-secret
+              key: password
+        envFrom:
+        - secretRef:
+            name: sds-backend-secret
         resources:
           limits:
             memory: "128Mi"
