@@ -7,7 +7,7 @@ spec:
   bootstrap:
     initdb:
       database: sds-status
-      owner: sds
+      owner: sds-database-user
       secret:
         name: sds-db-secret
   storage:
