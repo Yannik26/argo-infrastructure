@@ -10,9 +10,23 @@ spec:
     http:
       paths:
       - pathType: Prefix
+        path: "/leitstelle"
+        backend:
+          service:
+            name: leitstelle-svc
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: api-svc
+            port: 
+              number: 80
+      - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: <Service>
+            name: sds-tableau-svc
             port: 
-              number: <Port>
+              number: 80
