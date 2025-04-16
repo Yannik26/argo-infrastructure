@@ -13,6 +13,7 @@ spec:
     spec:
       containers:
       - name: backend
+        imagePullPolicy: Always
         image: harbor.yannikmueller.eu/sds-status/backend:testing
         env: 
         - name: DB_USER 
