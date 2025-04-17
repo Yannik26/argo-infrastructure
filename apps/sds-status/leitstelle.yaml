@@ -16,7 +16,7 @@ spec:
         image: harbor.yannikmueller.eu/sds-status/leitstelle:testing
         env:
         - name: SDS_API_URL
-          value: funk.yannikmueller.eu
+          value: https://funk.yannikmueller.eu
         - name: SDS_OIDC_AUTHORITY
           value: https://sso.yannikmueller.eu/realms/Funk-Status-App
         - name: SDS_OIDC_CLIENT_ID

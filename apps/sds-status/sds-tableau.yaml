@@ -16,7 +16,7 @@ spec:
         image: harbor.yannikmueller.eu/sds-status/sds-tableau:testing
         env:
         - name: SDS_API_URL
-          value: funk.yannikmueller.eu
+          value: https://funk.yannikmueller.eu
         resources:
           limits:
             memory: "128Mi"
