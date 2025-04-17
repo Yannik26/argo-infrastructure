@@ -20,7 +20,7 @@ spec:
         - name: SDS_OIDC_AUTHORITY
           value: https://sso.yannikmueller.eu/realms/Funk-Status-App
         - name: SDS_OIDC_CLIENT_ID
-          value: sds-dev
+          value: sds
         - name: SDS_OIDC_REDIRECT
           value: http://funk.yannikmueller.eu/leitstelle/
         resources:
