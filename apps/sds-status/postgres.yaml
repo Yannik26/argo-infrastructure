@@ -8,8 +8,8 @@ spec:
     initdb:
       database: sds-status
       owner: sds-database-user
-      secret:
-        name: sds-db-secret
+      # secret:
+      #   name: sds-db-secret
   storage:
     storageClass: longhorn
     size: 2Gi
