@@ -22,7 +22,7 @@ spec:
         - name: SDS_OIDC_CLIENT_ID
           value: sds-dev
         - name: SDS_OIDC_REDIRECT
-          value: http://localhost:3000/leitstelle/
+          value: http://funk.yannikmueller.eu/leitstelle/
         resources:
           limits:
             memory: "128Mi"
