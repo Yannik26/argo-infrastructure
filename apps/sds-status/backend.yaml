@@ -21,6 +21,11 @@ spec:
             secretKeyRef:
               name: sds-database-app
               key: uri
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: sds-valkey-valkey-cluster
+              key: valkey-password
         envFrom:
         - secretRef:
             name: sds-backend-secret
