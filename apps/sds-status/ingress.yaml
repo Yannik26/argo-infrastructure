@@ -1,6 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: lentencrypt
   name: sds-ingress
   labels:
     name: sds-ingress
@@ -30,3 +32,7 @@ spec:
             name: sds-tableau-svc
             port: 
               number: 80
+  tls:
+  - hosts: 
+    - funk.yannikmueller.eu 
+    secretName: funk.yannikmueller.eu-tls
