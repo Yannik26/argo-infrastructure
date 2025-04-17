@@ -22,7 +22,7 @@ spec:
         - name: SDS_OIDC_CLIENT_ID
           value: sds
         - name: SDS_OIDC_REDIRECT
-          value: http://funk.yannikmueller.eu/leitstelle/
+          value: https://funk.yannikmueller.eu/leitstelle/
         resources:
           limits:
             memory: "128Mi"
