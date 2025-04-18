@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - name: leitstelle
+        imagePullPolicy: Always
         image: harbor.yannikmueller.eu/sds-status/leitstelle:testing
         env:
         - name: SDS_API_URL

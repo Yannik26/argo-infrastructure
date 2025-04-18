@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - name: sds-tableau
+        imagePullPolicy: Always
         image: harbor.yannikmueller.eu/sds-status/sds-tableau:testing
         env:
         - name: SDS_API_URL
