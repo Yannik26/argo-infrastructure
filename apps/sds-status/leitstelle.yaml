@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   name: leitstelle
     annotations:
-    keel.sh/policy: force
-    keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@every 1m"
+      keel.sh/policy: force
+      keel.sh/trigger: poll
+      keel.sh/pollSchedule: "@every 1m"
 spec:
   selector:
     matchLabels:
