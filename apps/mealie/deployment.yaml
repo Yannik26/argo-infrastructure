@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    keel.sh/policy: all
-    keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@daily"
+  # annotations:
+  #   keel.sh/policy: all
+  #   keel.sh/trigger: poll
+  #   keel.sh/pollSchedule: "@daily"
   name: mealie
   namespace: mealie
   labels:
@@ -25,7 +25,7 @@ spec:
             claimName: mealie-pvc
       containers:
       - name: mealie
-        image: ghcr.io/mealie-recipes/mealie:v2.4.2
+        image: ghcr.io/mealie-recipes/mealie:v2.5.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
