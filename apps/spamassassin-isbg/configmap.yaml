@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: isbg-config
-data:
-  TZ: "Europe/Berlin"
-  LIST_FOLDERS: "true"
-  DETAILED_LOGGING: "true"
