@@ -16,8 +16,8 @@ metadata:
   name: influxdb-route
   namespace: default
 spec:
-  entryPoints:
-    - websecure      # Wir nutzen Port 443 (HTTPS)
+  # entryPoints:
+  #   - websecure      # Wir nutzen Port 443 (HTTPS)
   routes:
   - match: Host(`influx-adp.yannikmueller.eu`) # <--- DEINE DOMAIN
     kind: Rule
