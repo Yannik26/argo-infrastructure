@@ -24,4 +24,4 @@ spec:
     - name: influxdb-extern
       port: 8086
   tls:
-    secretName: "influx-adp.yannikmueller.eu"
+    secretName: "influx-adp.yannikmueller.eu-secret"
