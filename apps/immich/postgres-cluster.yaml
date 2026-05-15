@@ -14,3 +14,15 @@ spec:
   storage:
     storageClass: longhorn
     size: 4Gi
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: immich-db
+spec:
+  name: immich
+  owner: immich
+  cluster:
+    name: immich-postgres-cluster
+  extensions:
+  - name: vector
