@@ -13,6 +13,8 @@ spec:
         name: postgres-user
       extensions:
         - vector
+        - cube
+        - earthdistance
   storage:
     storageClass: longhorn
     size: 4Gi
