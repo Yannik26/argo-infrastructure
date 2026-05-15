@@ -10,7 +10,7 @@ spec:
       database: immich
       owner: immich
       secret:
-        name: immich-user
+        name: postgres-user
   storage:
     storageClass: longhorn
     size: 4Gi
