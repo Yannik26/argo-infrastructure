@@ -22,4 +22,4 @@ data:
   # OIDC_AUTO_REDIRECT: "true"
   # OIDC_ADMIN_GROUP: "/mealie/admin"
   # OIDC_USER_GROUP: "/mealie"
-  TOKEN_TIME:"720"
+  TOKEN_TIME: "720"
