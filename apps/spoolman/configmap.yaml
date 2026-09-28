@@ -6,3 +6,4 @@ data:
   TZ: Europe/Berlin
   PUID: "1000"
   PGID: "1000" 
+  SPOOLMAN_CORS_ORIGIN: "http://micron.local"
