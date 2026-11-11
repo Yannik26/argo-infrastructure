@@ -1,0 +1,38 @@
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: sidekick
+spec:
+  component:
+    type: falcosidekick
+  replicas: 2
+---
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Config
+metadata:
+  name: sidekick-output
+spec:
+  config:
+    json_output: true
+    http_output:
+      enabled: true
+      url: "http://sidekick:2801"
+  priority: 60
+---
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: sidekick-ui
+spec:
+  component:
+    type: falcosidekick-ui
+  replicas: 2
+---
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: metacollector
+spec:
+  component:
+    type: metacollector
+  replicas: 1
